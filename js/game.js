@@ -29,7 +29,13 @@ let cards = {
         id: "ATCK",
         name: "Attaque",
         effect: "Joue 2 tours au lieu d'un.",
-        count: 4
+        count: 5
+    },
+    STF: {
+        id: "STF",
+        name: "Divination",
+        effect: "Consulte les 3 prochaines cartes de la pioche",
+        count: 5
     }
 }
 
@@ -44,24 +50,28 @@ function prepareCards(playerCount) {
     return gameDeck;
 }
 
-function giveCards(players, cards){
-    console.log(cards)
-    players.forEach(player => {
-        player['hand'] = [];
+function giveCards(clients, cards){
+    clients.forEach(client => {
+        client.player.hand = [];
         var diffuseKit = cards.find( (card) => card.id === "DK" )
         var diffuseKitIndex = cards.findIndex( (card) => card.id === "DK" )
-        console.log(diffuseKit)
-        console.log(diffuseKitIndex)
         if(diffuseKitIndex !== -1){
-            player.hand.push(diffuseKit)
+            client.player.hand.push(diffuseKit)
             cards.splice(diffuseKitIndex, 1)
         }
-        console.log(cards)
-    });
-    cards.forEach(card => {
         
-    })
-    // console.log(players)
+        while(client.player.hand.length < 7){
+            // console.log(client.player.username + " reçois une carte")
+            let cardToGive = cards.find( (card) => card.id !== 'BOMB' && card.id !== 'DK' ),    
+                cardToGiveIndex = cards.findIndex( (card) =>  card.id == cardToGive.id )
+            
+            client.player.hand.push(cardToGive)
+            cards.splice(cardToGiveIndex, 1)
+        }
+        // console.log("Distribution terminée pour " + client.player.username);
+        console.log(client.player.hand)
+    });
+    console.log(cards)
 }
 
 module.exports = { prepareCards, giveCards }

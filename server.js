@@ -4,16 +4,13 @@ let http = require("http")
 
 let explodingKittenz = require("./js/game");
 
-let cards = explodingKittenz.prepareCards(4);
-// console.log(cards);
-
 let app = express()
 let server = http.Server(app)
 let io = socketio(server)
 
 let game = {
+    cards: [],
     players: [],
-    test: "oui"
 }
 
 app.use("/js", express.static( __dirname + '/js' ))
@@ -26,25 +23,20 @@ io.on("connection", function(socket){
     socket.on("disconnect", function(){
         socket.disconnect(true)
         let index = game.players.indexOf(game.players.find(player => player.id == socket.id))
-        // console.log(game.players.find(user => user.id = socket.id))
-        // console.log(`User with ID "${socket.id}" at index "${ index }" disconnected.`)
         game.players.splice(index, 1);
-        // console.log(game.players)
         io.emit('userdisconnected', socket.id, game.players)
     })
     
     socket.on('join', function(data){
+        console.log(data)
         if(!game.players.includes(data)) game.players.push(data)
         io.sockets.emit("joined", game.players)
     })
 
     socket.on("startGame", function(){
         if(game.players.length) {
-            // game.players.forEach(element => {
-            //     console.log(element)
-            // });
-
-            explodingKittenz.giveCards(game.players, shuffle(cards))
+            game.cards = explodingKittenz.prepareCards(game.players.length);
+            explodingKittenz.giveCards(game.players, shuffle(game.cards))
         }
     })
 })

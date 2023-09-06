@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", function(){
         let username = document.getElementById('username').value
         if(!username.length) return
         player.username = username
+        player.isLeader = false
+        player.isYourTurn = false
+        player.cardsCount = 0
         socket.emit("join", {
             player
         })
