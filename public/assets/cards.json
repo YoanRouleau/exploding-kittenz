@@ -1,0 +1,38 @@
+{
+  "DK": {
+    "id": "DK",
+    "name": "Kit de désamorçage",
+    "effect": "Permet de désamorcer une bombe une fois piochée.",
+    "count": null
+  },
+  "ST": {
+    "id": "ST",
+    "name": "Passe-tour",
+    "effect": "Sautez votre tour.",
+    "count": 5
+  },
+  "NO": {
+    "id": "NO",
+    "name": "NON",
+    "effect": "Bloque une action.",
+    "count": 4
+  },
+  "BOMB": {
+    "id": "BOMB",
+    "name": "Exploding Kittenz",
+    "effect": "Vous explosez, sauf si vous possédez un kit de désamorçage",
+    "count": null
+  },
+  "ATCK": {
+    "id": "ATCK",
+    "name": "Attaque",
+    "effect": "Joue 2 tours au lieu d'un.",
+    "count": 5
+  },
+  "STF": {
+    "id": "STF",
+    "name": "Divination",
+    "effect": "Consulte les 3 prochaines cartes de la pioche",
+    "count": 5
+  }
+}
