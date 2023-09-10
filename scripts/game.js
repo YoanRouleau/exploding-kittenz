@@ -2,7 +2,7 @@ import { Deck } from "./deck";
 
 export class Game {
     constructor({ players }) {
-        this._deck = new Deck({ isGameDeck: true });
+        this._deck = new Deck({ isDrawPile: true });
         this._players = players;
 
         // TODOS:
@@ -58,10 +58,6 @@ export class Game {
 
 let gameDeck = []
 
-let cards =
-
-function
-function
 
 module.exports = { prepareCards, giveCards }
 

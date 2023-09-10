@@ -12,16 +12,16 @@ export class Deck {
     /**
      * Create Deck
      *
-     * @param {boolean} isGameDeck Check if a deck is for the game and not for players
+     * @param {boolean} isDrawPile Check if a deck is for the game and not for players
      */
-    constructor({ isGameDeck } = { isGameDeck: false }) {
+    constructor({ isDrawPile } = { isDrawPile: false }) {
         /**
          *
          * @type {Card[]}
          * @private
          */
         this._cards = [];
-        if (isGameDeck) {
+        if (isDrawPile) {
             this._cards = cards;
         }
     }
